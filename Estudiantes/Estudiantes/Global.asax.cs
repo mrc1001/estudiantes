@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Estudiantes.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,10 +13,17 @@ namespace Estudiantes
     {
         protected void Application_Start()
         {
+            this.VerificaRolesApp();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void VerificaRolesApp()
+        {
+            UsersHelper.CheckRole("Admin");
+            UsersHelper.CheckSuperUser();
         }
     }
 }
